@@ -1,10 +1,9 @@
 'use strict';
 class Animals {
-  constructor(age, name, weight, limbAmount) {
+  constructor(age, name, weight) {
     this.age = age;
     this.name = name;
     this.weight = weight;
-    this.limbAmount = limbAmount;
   }
 
   move() {
@@ -25,10 +24,6 @@ class Animals {
 }
 
 class Mammals extends Animals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static maxAge = 20;
   static maxWeight = 100;
 
@@ -38,56 +33,58 @@ class Mammals extends Animals {
 }
 
 class Birds extends Animals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static maxAge = 10;
   static maxWeight = 5;
 
   static isBirds(obj) {
     return obj instanceof Birds;
   }
+  move() {
+    console.log(`${this.name} is running.`);
+  }
+
+  say() {
+    console.log(`${this.name} is barking.`);
+  }
+
+  eat() {
+    console.log(`${this.name} is eating bones.`);
+  }
 }
 
 class Fish extends Animals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static maxAge = 5;
   static maxWeight = 2;
 
   static isFish(obj) {
     return obj instanceof Fish;
   }
+  move() {
+    console.log(`${this.name} is running.`);
+  }
+
+  say() {
+    console.log(`${this.name} is barking.`);
+  }
+
+  eat() {
+    console.log(`${this.name} is eating bones.`);
+  }
 }
 
 class Predators extends Mammals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static isPredators(obj) {
     return obj instanceof Predators;
   }
 }
 
 class Whales extends Mammals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static isWhales(obj) {
     return obj instanceof Whales;
   }
 }
 
 class Primates extends Mammals {
-  constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
-  }
-
   static isPrimates(obj) {
     return obj instanceof Primates;
   }
@@ -95,35 +92,73 @@ class Primates extends Mammals {
 
 class Dog extends Predators {
   constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
+    super(age, name, weight);
+    this.limbAmount = limbAmount;
   }
 
   static isDog(obj) {
     return obj instanceof Dog;
   }
+
+  move() {
+    console.log(`${this.name} is running.`);
+  }
+
+  say() {
+    console.log(`${this.name} is barking.`);
+  }
+
+  eat() {
+    console.log(`${this.name} is eating bones.`);
+  }
 }
 
 class Dolphin extends Whales {
   constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
+    super(age, name, weight);
+    this.limbAmount = limbAmount;
   }
 
   static isDolphin(obj) {
     return obj instanceof Dolphin;
   }
+
+  move() {
+    console.log(`${this.name} is swimming.`);
+  }
+
+  say() {
+    console.log(`${this.name} is making dolphin sounds.`);
+  }
+
+  eat() {
+    console.log(`${this.name} is eating fish.`);
+  }
 }
 
 class Human extends Primates {
   constructor(age, name, weight, limbAmount) {
-    super(age, name, weight, limbAmount);
+    super(age, name, weight);
+    this.limbAmount = limbAmount;
   }
 
   static isHuman(obj) {
     return obj instanceof Human;
   }
+
+  move() {
+    console.log(`${this.name} is walking.`);
+  }
+
+  say() {
+    console.log(`${this.name} is talking.`);
+  }
+
+  eat() {
+    console.log(`${this.name} is eating a meal.`);
+  }
 }
 
-// Создаем объекты для каждого класса
 const dog1 = new Dog(5, "Buddy", 20, 4);
 const dog2 = new Dog(3, "Max", 15, 4);
 
@@ -133,7 +168,6 @@ const dolphin2 = new Dolphin(8, "Dolly", 1200, 0);
 const human1 = new Human(30, "John", 70, 2);
 const human2 = new Human(25, "Emma", 60, 2);
 
-// Проверяем методы и свойства объектов
 console.log("=== Testing Dog ===");
 dog1.move();
 dog1.say();
