@@ -14,19 +14,14 @@ const arrGroups = [
   'FM2022-1',
 ];
 
-function nameValidation(arr) {
-  const reg = /([a-z]{2}|[A-Z]{2})20\d{2}.*/;
-  const results = [];
-
-  for (const item of arr) {
-    if (reg.test(item)) {
-      results.push(`${item} success`);
-    } else {
-      results.push(`${item} error`);
-    }
+function nameValidation(str) {
+  const reg = /^(F[D|E|M])|(f[d|e|m])20(\d{2})(-\d+)?$/;
+  if(reg.test(str)){
+    return 'Success';
+  } return 'Error';
   }
 
-  return results;
-}
+  arrGroups.forEach(item => {
+    console.log(`${item}: ${nameValidation(item)}`);
+  })
 
-console.log(nameValidation(arrGroups));
